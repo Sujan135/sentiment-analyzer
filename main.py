@@ -21,28 +21,15 @@ lemmatizer = WordNetLemmatizer()
 
 def clean_text(text):
     text = text.lower()
+    typo_dict = {"awasome": "awesome", "goood": "good", "baad": "bad"}
+    for typo, correct in typo_dict.items():
+        if typo in text:
+            text = text.replace(typo, correct)
     corrected = str(TextBlob(text).correct())
     corrected = re.sub(r'\W+', ' ', corrected).strip()
-    corrected = handle_negation(corrected)
     words = corrected.split()
     lemmatized = [lemmatizer.lemmatize(w) for w in words]
     return ' '.join(lemmatized)
-
-def handle_negation(text):
-    negation_words = {'not', "don't", "didn't", "no", "never"}
-    tokens = text.split()
-    result = []
-    negate = False
-    for word in tokens:
-        if word in negation_words:
-            negate = True
-            result.append(word)
-        elif negate:
-            result.append("NOT_" + word)
-            negate = False
-        else:
-            result.append(word)
-    return " ".join(result)
 
 def tune_nb(X_train, y_train):
     nb = MultinomialNB()
