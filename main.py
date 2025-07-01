@@ -1,22 +1,26 @@
 from data.dataset import load_data
-from models.naive_bayes import NaiveBayesModel
-from sklearn.feature_extraction.text import CountVectorizer
+from models.logistic_regression import LogisticRegressionModel
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from utils.metrics import show_metrics
+from collections import Counter
+
 
 def main():
     data = load_data()
     texts = [x[0] for x in data]
     labels = [x[1] for x in data]
+    print("Class distribution:", Counter(labels))
 
-    vectorizer = CountVectorizer()
+
+    vectorizer = TfidfVectorizer(ngram_range=(1, 2))
     X = vectorizer.fit_transform(texts)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, labels, test_size=0.3, random_state=42, stratify=labels
     )
 
-    model = NaiveBayesModel()
+    model = LogisticRegressionModel()
     model.train(X_train, y_train)
 
     y_pred = model.predict(X_test)
