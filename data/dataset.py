@@ -1,5 +1,6 @@
 def load_data():
     return [
+        # Original positive examples
         ("I love this!", "positive"),
         ("Amazing experience.", "positive"),
         ("I am very happy.", "positive"),
@@ -15,6 +16,25 @@ def load_data():
         ("I feel satisfied.", "positive"),
         ("Loved it so much.", "positive"),
         ("So useful!", "positive"),
+
+        # Added positive examples
+        ("Exceeded my expectations!", "positive"),
+        ("Very pleased with this purchase.", "positive"),
+        ("Highly recommend to everyone.", "positive"),
+        ("Will buy again for sure.", "positive"),
+        ("Five stars, absolutely perfect.", "positive"),
+        ("Brilliant and reliable.", "positive"),
+        ("Great value for the price.", "positive"),
+        ("Customer service was excellent.", "positive"),
+        ("Works exactly as described.", "positive"),
+        ("Totally satisfied.", "positive"),
+        ("Exceptional quality.", "positive"),
+        ("Fast shipping and great packaging.", "positive"),
+        ("Love the design and features.", "positive"),
+        ("Superb experience overall.", "positive"),
+        ("Can't imagine living without it.", "positive"),
+
+        # Original negative examples
         ("I hate this.", "negative"),
         ("Terrible experience.", "negative"),
         ("Worst ever.", "negative"),
@@ -29,5 +49,22 @@ def load_data():
         ("Poor service.", "negative"),
         ("Waste of time.", "negative"),
         ("Horrible result.", "negative"),
-        ("Extremely unsatisfied.", "negative")
+        ("Extremely unsatisfied.", "negative"),
+
+        # Added negative examples
+        ("Very poor quality.", "negative"),
+        ("Stopped working after a week.", "negative"),
+        ("Not as described.", "negative"),
+        ("I want my money back.", "negative"),
+        ("Customer support was useless.", "negative"),
+        ("Disappointed beyond words.", "negative"),
+        ("Terrible packaging.", "negative"),
+        ("Faulty and unreliable.", "negative"),
+        ("Don’t waste your money.", "negative"),
+        ("Product arrived late and damaged.", "negative"),
+        ("Completely useless product.", "negative"),
+        ("Broke after first use.", "negative"),
+        ("Awful design and performance.", "negative"),
+        ("Would never buy again.", "negative"),
+        ("One star is too much.", "negative"),
     ]
