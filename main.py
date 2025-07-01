@@ -5,12 +5,16 @@ from sklearn.model_selection import train_test_split
 from utils.metrics import show_metrics
 from collections import Counter
 from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
 
 def main():
     data = load_data()
     texts = [x[0] for x in data]
-    labels = [x[1] for x in data]
-    print("Class distribution:", Counter(labels))
+    raw_labels = [x[1] for x in data]
+    label_encoder = LabelEncoder()
+    labels = label_encoder.fit_transform(raw_labels)
+
+    print("Class distribution:", Counter(raw_labels))
 
     vectorizer = TfidfVectorizer(ngram_range=(1, 2))
     X = vectorizer.fit_transform(texts)
@@ -23,11 +27,11 @@ def main():
     model.train(X_train, y_train)
 
     y_pred = model.predict(X_test)
-    print("Actual labels:", y_test)
-    print("Predicted labels:", y_pred.tolist())
+
+    print("Actual labels:", label_encoder.inverse_transform(y_test))
+    print("Predicted labels:", label_encoder.inverse_transform(y_pred))
     show_metrics(y_test, y_pred)
 
-    # Bonus: train & test on full data to check model power
     model.train(X, labels)
     y_pred_full = model.predict(X)
     full_acc = accuracy_score(labels, y_pred_full)
@@ -39,7 +43,8 @@ def main():
         if user_input.lower() == 'exit':
             break
         vec = vectorizer.transform([user_input])
-        result = model.predict(vec)[0]
+        pred_numeric = model.predict(vec)[0]
+        result = label_encoder.inverse_transform([pred_numeric])[0]
         print("Prediction:", result)
 
 if __name__ == "__main__":
