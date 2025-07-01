@@ -6,14 +6,12 @@ def show_metrics(y_test, y_pred):
     acc = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {acc:.2f}")
 
-    # Use numeric labels here, matching LabelEncoder output
-    labels = [0, 1]
-    cm = confusion_matrix(y_test, y_pred, labels=labels)
+    # Find unique labels in y_test and y_pred combined, sorted for consistency
+    unique_labels = sorted(list(set(y_test) | set(y_pred)))
 
-    # Map numeric labels to strings for plot ticks
-    label_names = ["negative", "positive"]  # assuming 0=negative, 1=positive
+    cm = confusion_matrix(y_test, y_pred, labels=unique_labels)
 
-    sns.heatmap(cm, annot=True, fmt='d', xticklabels=label_names, yticklabels=label_names)
+    sns.heatmap(cm, annot=True, fmt='d', xticklabels=unique_labels, yticklabels=unique_labels)
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
