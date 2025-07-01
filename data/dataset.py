@@ -1,6 +1,5 @@
 def load_data():
     return [
-        # Positive reviews
         ("Loved the storyline and characters!", "positive"),
         ("This movie was amazing, a must-watch!", "positive"),
         ("Truly a masterpiece. I was blown away.", "positive"),
@@ -31,8 +30,12 @@ def load_data():
         ("An underrated gem.", "positive"),
         ("This deserves more recognition.", "positive"),
         ("So good I watched it twice!", "positive"),
+        ("Absolutely awesome! Highly recommended.", "positive"),
+        ("Brilliant performance by the entire cast.", "positive"),
+        ("Awesome story with a heartfelt message.", "positive"),
+        ("What an awesome experience watching this.", "positive"),
+        ("Simply awesome, I loved it.", "positive"),
 
-        # Negative reviews
         ("Terrible movie. I regret watching it.", "negative"),
         ("The plot made no sense at all.", "negative"),
         ("Boring and too slow.", "negative"),
@@ -62,5 +65,10 @@ def load_data():
         ("Laughably bad effects.", "negative"),
         ("Hyped up but totally flat.", "negative"),
         ("It was painful to sit through.", "negative"),
-        ("Please don’t watch this.", "negative")
+        ("Please don’t watch this.", "negative"),
+        ("Awful experience, not worth the time.", "negative"),
+        ("Terribly disappointing and boring.", "negative"),
+        ("Horrible acting ruined the movie.", "negative"),
+        ("The worst story I've seen in years.", "negative"),
+        ("Nothing good about this movie.", "negative"),
     ]
